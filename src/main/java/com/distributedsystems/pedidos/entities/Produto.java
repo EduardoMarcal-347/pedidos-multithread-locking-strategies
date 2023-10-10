@@ -36,11 +36,11 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(String desProduto, Double vlrProduto, int qtdEstoque, List<ItemPedido> itensPedidos) {
+    public Produto(String desProduto, Double vlrProduto, int qtdEstoque, int cod_vrs) {
         this.desProduto = desProduto;
         this.vlrProduto = vlrProduto;
         this.qtdEstoque = qtdEstoque;
-        this.itensPedidos = itensPedidos;
+        this.cod_vrs = cod_vrs;
     }
 
     public Long getCodProduto() {

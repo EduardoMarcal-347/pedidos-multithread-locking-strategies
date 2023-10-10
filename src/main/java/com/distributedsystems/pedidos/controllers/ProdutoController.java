@@ -1,7 +1,6 @@
 package com.distributedsystems.pedidos.controllers;
 
 import com.distributedsystems.pedidos.entities.Produto;
-import com.distributedsystems.pedidos.repositories.ProdutoRepository;
 import com.distributedsystems.pedidos.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
