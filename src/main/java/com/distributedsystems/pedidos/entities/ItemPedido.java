@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "itens_pedidos")
+@Table(name = "TB_ITEM_PEDIDO")
 public class ItemPedido implements Serializable {
 
     @Id()
@@ -18,16 +18,15 @@ public class ItemPedido implements Serializable {
     @Column(name = "QTD_ITEM")
     private int qtdItem;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "produto.codProduto")
-    private Produto produto;
+    @Column(name = "COD_PRODUTO")
+    private Long codProduto;
 
     public ItemPedido() {
     }
 
-    public ItemPedido(int qtdItem, Produto produto) {
+    public ItemPedido(int qtdItem, Long codProduto) {
         this.qtdItem = qtdItem;
-        this.produto = produto;
+        this.codProduto = codProduto;
     }
 
     public Long getCodItem() {
@@ -46,33 +45,34 @@ public class ItemPedido implements Serializable {
         this.qtdItem = qtdItem;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public Long getCodProduto() {
+        return codProduto;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setCodProduto(Long codProduto) {
+        this.codProduto = codProduto;
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItemPedido that = (ItemPedido) o;
-        return codItem == that.codItem && qtdItem == that.qtdItem && Objects.equals(produto, that.produto);
+        return Objects.equals(codItem, that.codItem);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codItem, qtdItem, produto);
+        return Objects.hash(codItem);
     }
 
     @Override
     public String toString() {
-        return "ItensPedidos{" +
+        return "ItemPedido{" +
                 "codItem=" + codItem +
                 ", qtdItem=" + qtdItem +
-                ", produto=" + produto +
+                ", codProduto=" + codProduto +
                 '}';
     }
 }

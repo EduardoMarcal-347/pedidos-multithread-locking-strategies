@@ -4,6 +4,7 @@ package com.distributedsystems.pedidos.controllers;
 import com.distributedsystems.pedidos.entities.ItemPedido;
 import com.distributedsystems.pedidos.service.ItemPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class ItemPedidoController {
     }
 
     @PostMapping()
-    public Optional<ItemPedido> save(@RequestBody ItemPedido item){
+    public ResponseEntity<ItemPedido> save(@RequestBody ItemPedido item){
         return service.save(item);
     }
 }

@@ -4,11 +4,10 @@ package com.distributedsystems.pedidos.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "produto")
+@Table(name = "TB_PRODUTO")
 public class Produto implements Serializable {
 
     @Id
@@ -28,10 +27,6 @@ public class Produto implements Serializable {
     @Version
     @Column(name = "COD_VRS")
     private int cod_vrs;
-
-    @Column
-    @OneToMany(mappedBy = "produto", fetch = FetchType.LAZY, orphanRemoval = false)
-    private List<ItemPedido> itensPedidos;
 
     public Produto() {
     }
@@ -83,14 +78,6 @@ public class Produto implements Serializable {
         this.qtdEstoque = qtdEstoque;
     }
 
-    public List<ItemPedido> getItensPedidos() {
-        return itensPedidos;
-    }
-
-    public void setItensPedidos(List<ItemPedido> itensPedidos) {
-        this.itensPedidos = itensPedidos;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -111,7 +98,6 @@ public class Produto implements Serializable {
                 ", desProduto='" + desProduto + '\'' +
                 ", vlrProduto=" + vlrProduto +
                 ", qtdEstoque=" + qtdEstoque +
-                ", itensPedidos=" + itensPedidos +
                 '}';
     }
 }
