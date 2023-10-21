@@ -48,6 +48,7 @@ public class ItemPedidoService {
             return ResponseEntity.badRequest().build();
         }
         produto.get().setQtdEstoque(produto.get().getQtdEstoque() - item.getQtdItem());
+        produto.get().setCodVrs(produto.get().getCodVrs() + 1);
         produtoRepository.save(produto.get());
 
         return new ResponseEntity<ItemPedido>(itemPedidoRepository.save(item), HttpStatus.CREATED);

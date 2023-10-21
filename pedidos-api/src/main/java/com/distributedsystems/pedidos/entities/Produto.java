@@ -56,7 +56,7 @@ public class Produto implements Serializable {
         return codVrs;
     }
 
-    public void setCodVrs(int codVrs) {
+    public synchronized void setCodVrs(int codVrs) {
         this.codVrs = codVrs;
     }
 
@@ -76,11 +76,11 @@ public class Produto implements Serializable {
         this.vlrProduto = vlrProduto;
     }
 
-    public int getQtdEstoque() {
+    public  int getQtdEstoque() {
         return qtdEstoque;
     }
 
-    public void setQtdEstoque(int qtdEstoque) {
+    public synchronized void setQtdEstoque(int qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
     }
 
