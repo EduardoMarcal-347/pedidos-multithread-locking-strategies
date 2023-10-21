@@ -23,12 +23,14 @@ public class ItemPedidoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    public List<ItemPedido> findAll() {
-        return itemPedidoRepository.findAll();
+    public ResponseEntity<List<ItemPedido>> findAll() {
+        if (itemPedidoRepository.findAll().isEmpty()) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(itemPedidoRepository.findAll());
     }
 
-    public Optional<ItemPedido> findById(Long id){
-        return itemPedidoRepository.findById(id);
+    public ResponseEntity<ItemPedido>findById(Long id){
+        if (!itemPedidoRepository.findById(id).isPresent()) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(itemPedidoRepository.findById(id).get());
     }
 
     @Transactional

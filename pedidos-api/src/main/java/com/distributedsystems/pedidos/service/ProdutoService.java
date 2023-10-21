@@ -15,8 +15,9 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository repository;
 
-    public List<Produto> findAll() {
-        return repository.findAll();
+    public ResponseEntity<List<Produto>> findAll() {
+        if (repository.findAll().isEmpty()) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(repository.findAll());
     }
 
     public ResponseEntity<Produto> save(Produto produto){

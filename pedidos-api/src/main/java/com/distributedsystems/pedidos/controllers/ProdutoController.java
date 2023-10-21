@@ -16,7 +16,7 @@ public class ProdutoController {
     private ProdutoService service;
 
     @GetMapping()
-    public List<Produto> findAll() {
+    public ResponseEntity<List<Produto>> findAll() {
         return service.findAll();
     }
 

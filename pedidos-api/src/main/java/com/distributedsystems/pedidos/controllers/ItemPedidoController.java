@@ -2,6 +2,7 @@ package com.distributedsystems.pedidos.controllers;
 
 
 import com.distributedsystems.pedidos.entities.ItemPedido;
+import com.distributedsystems.pedidos.entities.Produto;
 import com.distributedsystems.pedidos.service.ItemPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +19,12 @@ public class ItemPedidoController {
     private ItemPedidoService service;
 
     @GetMapping()
-    public List<ItemPedido> findAll(){
+    public ResponseEntity<List<ItemPedido>> findAll(){
         return service.findAll();
     }
 
     @GetMapping("id/{id}")
-    public Optional<ItemPedido> findById(@PathVariable("id") Long id){
+    public ResponseEntity<ItemPedido> findById(@PathVariable("id") Long id){
         return service.findById(id);
     }
 
