@@ -26,16 +26,22 @@ public class Produto implements Serializable {
 
     @Version
     @Column(name = "COD_VRS")
-    private int cod_vrs;
+    private int codVrs;
 
     public Produto() {
     }
 
-    public Produto(String desProduto, Double vlrProduto, int qtdEstoque, int cod_vrs) {
+    public Produto(String desProduto, Double vlrProduto, int qtdEstoque, int codVrs) {
         this.desProduto = desProduto;
         this.vlrProduto = vlrProduto;
         this.qtdEstoque = qtdEstoque;
-        this.cod_vrs = cod_vrs;
+        this.codVrs = codVrs;
+    }
+
+    public Produto(String desProduto, Double vlrProduto, int qtdEstoque) {
+        this.desProduto = desProduto;
+        this.vlrProduto = vlrProduto;
+        this.qtdEstoque = qtdEstoque;
     }
 
     public Long getCodProduto() {
@@ -46,12 +52,12 @@ public class Produto implements Serializable {
         this.codProduto = codProduto;
     }
 
-    public int getCod_vrs() {
-        return cod_vrs;
+    public int getCodVrs() {
+        return codVrs;
     }
 
-    public void setCod_vrs(int cod_vrs) {
-        this.cod_vrs = cod_vrs;
+    public void setCodVrs(int codVrs) {
+        this.codVrs = codVrs;
     }
 
     public String getDesProduto() {
