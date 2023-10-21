@@ -1,6 +1,5 @@
 package com.distributedsystems.pedidos.entities;
 
-
 import jakarta.persistence.*;
 
 import java.io.Serializable;
