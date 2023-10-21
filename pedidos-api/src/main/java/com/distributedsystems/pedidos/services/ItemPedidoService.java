@@ -1,7 +1,6 @@
-package com.distributedsystems.pedidos.service;
+package com.distributedsystems.pedidos.services;
 
 import com.distributedsystems.pedidos.entities.ItemPedido;
-import com.distributedsystems.pedidos.entities.Produto;
 import com.distributedsystems.pedidos.repositories.ItemPedidoRepository;
 import com.distributedsystems.pedidos.repositories.ProdutoRepository;
 import jakarta.transaction.Transactional;
@@ -11,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class ItemPedidoService {
@@ -36,7 +33,7 @@ public class ItemPedidoService {
     @Transactional
     public ResponseEntity<ItemPedido> save(ItemPedido item) {
         var produto = produtoRepository.findById(item.getCodProduto());
-        if (produto.isEmpty()) {
+        if (!produto.isPresent()) {
             System.out.println("produto inexistente");
             return ResponseEntity.notFound().build();
         }

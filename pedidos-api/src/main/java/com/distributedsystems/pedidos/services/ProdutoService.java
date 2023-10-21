@@ -1,4 +1,4 @@
-package com.distributedsystems.pedidos.service;
+package com.distributedsystems.pedidos.services;
 
 import com.distributedsystems.pedidos.entities.Produto;
 import com.distributedsystems.pedidos.repositories.ProdutoRepository;
@@ -16,7 +16,7 @@ public class ProdutoService {
     private ProdutoRepository repository;
 
     public ResponseEntity<List<Produto>> findAll() {
-        if (repository.findAll().isEmpty()) return ResponseEntity.noContent().build();
+        if (repository.findAll().size() == 0) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(repository.findAll());
     }
 
