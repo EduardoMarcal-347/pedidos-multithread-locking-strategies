@@ -12,7 +12,7 @@ import java.util.Random;
 public class Client {
 
     public static void main(String[] args) {
-        int i = 0;
+        int i =0;
         while (i<1000) {
             Thread requestThread = new Thread(() -> {
                 createRequestSaveItemPedido();
@@ -41,7 +41,8 @@ public class Client {
 
             CloseableHttpResponse response = httpClient.execute(postRequest);
             String responseBody = EntityUtils.toString(response.getEntity());
-            System.out.println("Resposta: " + responseBody + "\nJson enviado: "+jsonRequest);
+
+            System.out.println("Resposta: " + responseBody + "\nJson enviado: " + jsonRequest);
 
             httpClient.close();
         } catch (Exception e) {
