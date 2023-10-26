@@ -40,26 +40,22 @@ public class ItemPedidoService {
     }
 
     @Transactional
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Lock(LockModeType.OPTIMISTIC)
     public ResponseEntity<ItemPedido> save(ItemPedido item) {
-        Session session = entityManager.unwrap(Session.class);
-        var dbProduto = produtoRepository.findById(item.getCodProduto());
-        if (!dbProduto.isPresent()) {
+        var produto = produtoRepository.findById(item.getCodProduto());
+        if (!produto.isPresent()) {
             System.out.println("produto inexistente");
             return ResponseEntity.notFound().build();
         }
-
-        Produto produto = session.get(Produto.class, item.getCodProduto(), LockMode.PESSIMISTIC_READ);
-
         if (item.getQtdItem() == 0) {
             System.out.println("o item deve conter pelo menos 1 produto");
             return ResponseEntity.badRequest().build();
-        } else if (item.getQtdItem() > produto.getQtdEstoque()) {
+        } else if (item.getQtdItem() > produto.get().getQtdEstoque()) {
             System.out.println("qtd insuficiente");
             return ResponseEntity.badRequest().build();
         }
-        produto.setQtdEstoque(produto.getQtdEstoque() - item.getQtdItem());
-        produtoRepository.save(produto);
+        produto.get().setQtdEstoque(produto.get().getQtdEstoque() - item.getQtdItem());
+        produtoRepository.save(produto.get());
 
         return new ResponseEntity<ItemPedido>(itemPedidoRepository.save(item), HttpStatus.CREATED);
     }
