@@ -4,6 +4,9 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password: password
+    hikari:
+      maximum-pool-size: 7
+      connection-timeout: 2200
   flyway:
     locations: db/migration
   h2:
