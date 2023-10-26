@@ -6,7 +6,6 @@ spring:
     password: password
     hikari:
       maximum-pool-size: 20
-      connection-timeout: 2200
   flyway:
     locations: db/migration
   h2:
