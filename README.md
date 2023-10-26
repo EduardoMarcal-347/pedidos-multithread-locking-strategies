@@ -82,11 +82,11 @@ This project uses the Maven system for dependency management and compilation. Fo
 2. Navigate to the project desired directory.:
 
     ```bash
-    cd pessimistic-pedidos-api
+    cd pessimistic-lock-api
     ```
     or
     ```bash
-    cd otimistic-pedidos-api
+    cd optimistic-lock-api
     ```
     
 #### Running the application
