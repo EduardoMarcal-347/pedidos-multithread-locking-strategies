@@ -5,10 +5,12 @@ import com.distributedsystems.pedidos.entities.Produto;
 import com.distributedsystems.pedidos.repositories.ItemPedidoRepository;
 import com.distributedsystems.pedidos.repositories.ProdutoRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.LockModeType;
 import jakarta.transaction.Transactional;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -38,6 +40,7 @@ public class ItemPedidoService {
     }
 
     @Transactional
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
     public ResponseEntity<ItemPedido> save(ItemPedido item) {
         Session session = entityManager.unwrap(Session.class);
         var dbProduto = produtoRepository.findById(item.getCodProduto());
